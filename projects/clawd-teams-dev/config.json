@@ -1,0 +1,45 @@
+{
+  "project_name": "clawd-teams-dev",
+  "project_id": "clawd-teams-dev",
+  "owner": "gulli",
+  "created_at": "2026-03-29",
+  "repo": "~/code/clawd-teams",
+  "github": "https://github.com/gullirg/clawd-teams",
+  "team": {
+    "ceo": {
+      "role": "Executive / CEO",
+      "model": "anthropic/claude-opus-4-5",
+      "session_target": "session:exec-clawd-teams-dev",
+      "daily_limit": 5
+    },
+    "cto": {
+      "role": "CTO / Dev",
+      "agent": "codex",
+      "daily_limit": 10
+    },
+    "researcher": {
+      "role": "Researcher",
+      "model": "anthropic/claude-sonnet-4-6",
+      "daily_limit": 8
+    },
+    "critic": {
+      "role": "Critic",
+      "model": "anthropic/claude-sonnet-4-6",
+      "daily_limit": 4
+    },
+    "planner": {
+      "role": "Planner",
+      "model": "anthropic/claude-sonnet-4-6",
+      "daily_limit": 3
+    }
+  },
+  "delivery": {
+    "channel": "telegram",
+    "chat_id": "5434311066",
+    "bot_token": "8715943233:AAGX4E9CCWGx_SdqrtWzMF0sXZcwtoeUJLQ"
+  },
+  "schedule": {
+    "cycle_cron": "0 10 * * *",
+    "timezone": "Europe/London"
+  }
+}

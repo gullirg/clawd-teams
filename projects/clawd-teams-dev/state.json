@@ -1,0 +1,23 @@
+{
+  "cycle": 0,
+  "last_cycle": null,
+  "last_cycle_status": null,
+  "current_goals": [
+    "Add clawd-teams CLI: `clawd-teams new <project>` scaffolds from template",
+    "Add automated health checks for stale executives and budget overruns",
+    "Improve EXECUTIVE_TEMPLATE.md based on learnings from real projects",
+    "Add CONTRIBUTING.md and CHANGELOG.md",
+    "Make worker_contract.md executable — Python/shell base classes"
+  ],
+  "task_queue": [],
+  "active_workers": [],
+  "completed_tasks": [],
+  "model_assignments": {
+    "ceo": "anthropic/claude-opus-4-5",
+    "cto": "codex",
+    "researcher": "anthropic/claude-sonnet-4-6",
+    "critic": "anthropic/claude-sonnet-4-6",
+    "planner": "anthropic/claude-sonnet-4-6"
+  },
+  "last_updated": null
+}

@@ -11,5 +11,24 @@
       "cron_job_id": "3ccb4c5b-94fb-4afe-847b-1980e819d95a",
       "status": "active"
     }
+  ,
+    {
+      "id": "clawd-teams-dev",
+      "name": "clawd-teams Dev Team",
+      "description": "Self-improving team that works on the clawd-teams framework itself",
+      "session_key": "session:exec-clawd-teams-dev",
+      "briefing": "projects/clawd-teams-dev/EXECUTIVE.md",
+      "config": "projects/clawd-teams-dev/config.json",
+      "state": "projects/clawd-teams-dev/state.json",
+      "team": {
+        "ceo": {"model": "anthropic/claude-opus-4-5", "daily_limit": 5},
+        "cto": {"agent": "codex", "daily_limit": 10},
+        "researcher": {"model": "anthropic/claude-sonnet-4-6", "daily_limit": 8},
+        "critic": {"model": "anthropic/claude-sonnet-4-6", "daily_limit": 4},
+        "planner": {"model": "anthropic/claude-sonnet-4-6", "daily_limit": 3}
+      },
+      "cron_job_id": "440edc71-bbd1-465c-bcdf-61332195e89c",
+      "status": "active"
+    }
   ]
 }
