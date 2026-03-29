@@ -1,8 +1,8 @@
 {
   "last_updated": "2026-03-29",
   "currency": "USD",
-  "daily_limit_usd": 10.0,
-  "note": "Global daily limit across ALL clawd-teams projects combined",
+  "daily_limit_usd": 2.0,
+  "note": "Hard daily limit $2 across ALL clawd-teams projects combined. CEOs on Sonnet by default.",
   "projects": {
     "clawd-teams-dev": {
       "today_usd": 0.05,
@@ -22,7 +22,7 @@
   },
   "external_projects": {
     "trading-agent": {
-      "note": "Tracked by remote CEO on ahnb-greggio — bridge script for live data",
+      "note": "Tracked by remote CEO on ahnb-greggio \u2014 bridge script for live data",
       "today_usd": 0.18,
       "today_gbp": 0.142,
       "daily_limit_gbp": 5.0,

@@ -9,7 +9,7 @@
   "active_workers": [],
   "completed_tasks": [],
   "model_assignments": {
-    "ceo": "anthropic/claude-opus-4-5",
+    "ceo": "anthropic/claude-sonnet-4-6",
     "cto": "codex",
     "researcher": "anthropic/claude-sonnet-4-6",
     "critic": "anthropic/claude-sonnet-4-6",
