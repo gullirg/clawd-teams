@@ -1,0 +1,15 @@
+{
+  "projects": [
+    {
+      "id": "news-digest",
+      "name": "News Digest",
+      "description": "Daily curated news digest delivered to Telegram",
+      "session_key": "session:exec-news-digest",
+      "briefing": "projects/news-digest/EXECUTIVE.md",
+      "config": "projects/news-digest/config.json",
+      "state": "projects/news-digest/state.json",
+      "cron_job_id": "3ccb4c5b-94fb-4afe-847b-1980e819d95a",
+      "status": "active"
+    }
+  ]
+}

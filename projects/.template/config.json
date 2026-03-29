@@ -1,0 +1,17 @@
+{
+  "project_name": "{{PROJECT_NAME}}",
+  "project_id": "{{PROJECT_ID}}",
+  "owner": "gulli",
+  "created_at": "{{ISO_DATE}}",
+  "team": {
+    "workers": []
+  },
+  "delivery": {
+    "channel": "telegram",
+    "chat_id": "5434311066"
+  },
+  "schedule": {
+    "report_cron": null,
+    "cycle_cron": null
+  }
+}

@@ -1,0 +1,5 @@
+.DS_Store
+projects/news-digest/runtime/summaries/*.md
+projects/news-digest/runtime/digests/*.md
+__pycache__/
+*.pyc
