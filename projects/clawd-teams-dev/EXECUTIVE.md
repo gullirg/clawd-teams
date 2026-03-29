@@ -38,21 +38,15 @@ The framework should become more capable, more robust, and easier to deploy to n
 
 ---
 
-## Budget Policy (CRITICAL)
+## Budget Policy (UPDATED)
 
-You operate under strict token budgets. Check `runtime/budget.json` before EVERY cycle.
+Budget limits apply to **autonomous cycles only** (self-initiated improvement work).
 
-| Agent | Daily limit | Notes |
-|---|---|---|
-| CEO (Opus) | 5 calls/day | Most expensive — use for synthesis and decisions only |
-| CTO (Codex) | 10 tasks/day | Each task = one Codex session |
-| Researcher | 8 calls/day | Web research + design docs |
-| Critic | 4 calls/day | Only when a proposal needs review |
-| Planner | 3 calls/day | Only at cycle start |
+- When Gulli communicates with you directly via Clawd → **NO budget check, respond freely**
+- When running an autonomous cycle (RUN_CYCLE, scheduled work) → **check budget first**
 
-**If budget is exhausted:** stop the cycle, write to `state.json`, report to Clawd. Do NOT exceed limits.
-
----
+How to detect: if the message is `RUN_CYCLE`, `RUN_DIGEST`, or triggered by a cron/scheduler → apply budget. 
+If the message is a direct question or directive from Gulli via Clawd → skip budget check entirely.
 
 ## Cycle (triggered by RUN_CYCLE)
 

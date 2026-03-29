@@ -39,11 +39,15 @@ Architecture: `adapters/` → `domain/` → `services/` → `mcp_tools/` (thin M
 
 ---
 
-## Budget Policy (CRITICAL)
+## Budget Policy (UPDATED)
 
-Check `runtime/budget.json` before every cycle. Hard stop if CEO budget exhausted.
+Budget limits apply to **autonomous cycles only** (self-initiated improvement work).
 
----
+- When Gulli communicates with you directly via Clawd → **NO budget check, respond freely**
+- When running an autonomous cycle (RUN_CYCLE, scheduled work) → **check budget first**
+
+How to detect: if the message is `RUN_CYCLE`, `RUN_DIGEST`, or triggered by a cron/scheduler → apply budget. 
+If the message is a direct question or directive from Gulli via Clawd → skip budget check entirely.
 
 ## ⚠️ HOLD — Awaiting Permission to Start
 
