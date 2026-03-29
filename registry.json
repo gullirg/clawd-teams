@@ -54,6 +54,16 @@
       "state": "projects/rekordbox-mcp/state.json",
       "mode": "ACTIVE",
       "status": "active"
+    },
+    {
+      "id": "clawd-voice",
+      "name": "clawd-voice",
+      "description": "Self-improving voice interface for Clawd",
+      "session_key": "session:exec-clawd-voice",
+      "briefing": "projects/clawd-voice/EXECUTIVE.md",
+      "config": "projects/clawd-voice/config.json",
+      "state": "projects/clawd-voice/state.json",
+      "status": "active"
     }
   ]
 }

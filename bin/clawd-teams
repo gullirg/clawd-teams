@@ -118,40 +118,64 @@ EOF
 list_projects() {
   require_registry
 
-  python3 - "$REGISTRY_FILE" <<'PY'
+  python3 - "$ROOT_DIR" "$REGISTRY_FILE" <<'PY'
 import json
 import sys
 from pathlib import Path
 
-registry_path = Path(sys.argv[1])
+root_dir = Path(sys.argv[1])
+registry_path = Path(sys.argv[2])
 
 with registry_path.open() as f:
     data = json.load(f)
 
 projects = data.get("projects", {})
 
-rows = []
+entries = []
 if isinstance(projects, dict):
     for name, project in sorted(projects.items()):
-        status = project.get("status", "unknown") if isinstance(project, dict) else "unknown"
-        rows.append((name, status))
+        entries.append((name, project if isinstance(project, dict) else {}))
 elif isinstance(projects, list):
     for project in projects:
         if not isinstance(project, dict):
             continue
         name = project.get("id") or project.get("name") or "<unknown>"
-        status = project.get("status", "unknown")
-        rows.append((name, status))
-    rows.sort()
+        entries.append((name, project))
+    entries.sort(key=lambda x: x[0])
 else:
     raise SystemExit("registry.json has unsupported 'projects' format")
 
-if not rows:
+if not entries:
     print("No projects found.")
     raise SystemExit(0)
 
-for name, status in rows:
-    print(f"{name}\t{status}")
+# Column headers
+print(f"{'PROJECT':<22}  {'STATUS':<10}  {'MODE':<10}  LAST CYCLE")
+print("-" * 62)
+
+for name, project in entries:
+    status = project.get("status", "unknown")
+    mode = project.get("mode", "-")
+
+    # Try to load state.json for last_cycle and cycle number
+    state_path_rel = project.get("state")
+    last_cycle = "-"
+    if state_path_rel:
+        state_path = root_dir / state_path_rel
+        if state_path.exists():
+            try:
+                with state_path.open() as sf:
+                    state = json.load(sf)
+                lc = state.get("last_cycle")
+                cycle = state.get("cycle", 0)
+                if lc:
+                    last_cycle = f"{lc} (cycle {cycle})"
+                else:
+                    last_cycle = f"never (cycle {cycle})"
+            except Exception:
+                last_cycle = "?"
+
+    print(f"{name:<22}  {status:<10}  {mode:<10}  {last_cycle}")
 PY
 }
 
