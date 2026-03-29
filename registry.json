@@ -30,5 +30,17 @@
       "cron_job_id": "440edc71-bbd1-465c-bcdf-61332195e89c",
       "status": "active"
     }
+  ,
+    {
+      "id": "rekordbox-mcp",
+      "name": "rekordbox-mcp",
+      "description": "MCP server connecting Rekordbox 6 DJ library to Claude Code",
+      "session_key": "session:exec-rekordbox-mcp",
+      "briefing": "projects/rekordbox-mcp/EXECUTIVE.md",
+      "config": "projects/rekordbox-mcp/config.json",
+      "state": "projects/rekordbox-mcp/state.json",
+      "mode": "REVIEW",
+      "status": "active"
+    }
   ]
 }

@@ -38,6 +38,31 @@ clawd-teams/
 4. Add entry to `registry.json`
 5. Clawd spins up a persistent executive session
 
+## CLI
+
+Use the bundled CLI to scaffold and inspect projects:
+
+```bash
+bin/clawd-teams help
+bin/clawd-teams list
+bin/clawd-teams new trading-bot
+```
+
+`clawd-teams help` prints:
+
+```text
+clawd-teams — multi-agent project framework
+
+Commands:
+  new <project>   Scaffold a new project from template
+  help            Show this help
+  list            List projects in registry.json
+
+Examples:
+  clawd-teams new trading-bot
+  clawd-teams new news-digest-v2
+```
+
 ## Framework principles
 
 - Executives are long-lived OpenClaw sessions with project context

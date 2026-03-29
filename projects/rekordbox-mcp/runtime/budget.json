@@ -1,0 +1,5 @@
+{
+  "date": "2026-03-29",
+  "calls": {"ceo": 0, "cto": 0, "researcher": 0, "critic": 0, "planner": 0},
+  "limits": {"ceo": 5, "cto": 10, "researcher": 8, "critic": 4, "planner": 3}
+}

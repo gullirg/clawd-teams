@@ -1,0 +1,21 @@
+{
+  "project_name": "rekordbox-mcp",
+  "project_id": "rekordbox-mcp",
+  "owner": "gulli",
+  "created_at": "2026-03-29",
+  "repo": "~/code/rekordbox-mcp",
+  "github": "https://github.com/gullirg/rekordbox-mcp",
+  "mode": "REVIEW",
+  "team": {
+    "ceo": {"model": "anthropic/claude-opus-4-5", "daily_limit": 5},
+    "cto": {"agent": "codex", "daily_limit": 10},
+    "researcher": {"model": "anthropic/claude-sonnet-4-6", "daily_limit": 8},
+    "critic": {"model": "anthropic/claude-sonnet-4-6", "daily_limit": 4},
+    "planner": {"model": "anthropic/claude-sonnet-4-6", "daily_limit": 3}
+  },
+  "delivery": {
+    "channel": "telegram",
+    "chat_id": "5434311066",
+    "bot_token": "8715943233:AAGX4E9CCWGx_SdqrtWzMF0sXZcwtoeUJLQ"
+  }
+}

@@ -1,0 +1,174 @@
+#!/usr/bin/env bash
+set -e
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+PROJECTS_DIR="$ROOT_DIR/projects"
+TEMPLATE_DIR="$PROJECTS_DIR/.template"
+REGISTRY_FILE="$ROOT_DIR/registry.json"
+
+usage() {
+  cat <<'EOF'
+clawd-teams — multi-agent project framework
+
+Commands:
+  new <project>   Scaffold a new project from template
+  help            Show this help
+  list            List projects in registry.json
+
+Examples:
+  clawd-teams new trading-bot
+  clawd-teams new news-digest-v2
+EOF
+}
+
+fail() {
+  echo "Error: $*" >&2
+  exit 1
+}
+
+require_registry() {
+  [ -f "$REGISTRY_FILE" ] || fail "registry.json not found at $REGISTRY_FILE"
+}
+
+new_project() {
+  local project_name="$1"
+  local project_dir="$PROJECTS_DIR/$project_name"
+  local executive_file="$project_dir/EXECUTIVE.md"
+  local today
+
+  [ -n "$project_name" ] || fail "project name is required. Run 'clawd-teams help' for usage."
+  [ -d "$TEMPLATE_DIR" ] || fail "template directory not found: $TEMPLATE_DIR"
+  [ ! -e "$project_dir" ] || fail "project already exists: $project_dir"
+  require_registry
+
+  cp -R "$TEMPLATE_DIR" "$project_dir"
+
+  [ -f "$executive_file" ] || fail "expected template file missing: $executive_file"
+  python3 - "$executive_file" "$project_name" <<'PY'
+import pathlib
+import sys
+
+path = pathlib.Path(sys.argv[1])
+project_name = sys.argv[2]
+path.write_text(path.read_text().replace("{{PROJECT_NAME}}", project_name))
+PY
+
+  cat > "$project_dir/state.json" <<'EOF'
+{
+  "cycle": 0,
+  "last_cycle": null,
+  "current_goals": [],
+  "task_queue": [],
+  "completed_tasks": [],
+  "last_updated": null
+}
+EOF
+
+  cat > "$project_dir/log.md" <<EOF
+# $project_name — Event Log
+
+## Created
+- Project scaffolded by clawd-teams CLI
+EOF
+
+  mkdir -p "$project_dir/runtime"
+
+  today="$(date +%F)"
+  python3 - "$REGISTRY_FILE" "$project_name" "$today" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+registry_path = Path(sys.argv[1])
+name = sys.argv[2]
+today = sys.argv[3]
+
+with registry_path.open() as f:
+    data = json.load(f)
+
+projects = data.setdefault("projects", {})
+entry = {"path": f"projects/{name}", "status": "new", "created": today}
+
+if isinstance(projects, dict):
+    if name in projects:
+        raise SystemExit(f"project already exists in registry.json: {name}")
+    projects[name] = entry
+elif isinstance(projects, list):
+    if any(project.get("id") == name for project in projects if isinstance(project, dict)):
+        raise SystemExit(f"project already exists in registry.json: {name}")
+    projects.append({"id": name, **entry})
+else:
+    raise SystemExit("registry.json has unsupported 'projects' format")
+
+with registry_path.open("w") as f:
+    json.dump(data, f, indent=2)
+    f.write("\n")
+PY
+
+  cat <<EOF
+Created project '$project_name' at projects/$project_name
+
+Next steps:
+  1. Review projects/$project_name/EXECUTIVE.md
+  2. Update projects/$project_name/config.json
+  3. Run clawd-teams list to confirm the registry entry
+EOF
+}
+
+list_projects() {
+  require_registry
+
+  python3 - "$REGISTRY_FILE" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+registry_path = Path(sys.argv[1])
+
+with registry_path.open() as f:
+    data = json.load(f)
+
+projects = data.get("projects", {})
+
+rows = []
+if isinstance(projects, dict):
+    for name, project in sorted(projects.items()):
+        status = project.get("status", "unknown") if isinstance(project, dict) else "unknown"
+        rows.append((name, status))
+elif isinstance(projects, list):
+    for project in projects:
+        if not isinstance(project, dict):
+            continue
+        name = project.get("id") or project.get("name") or "<unknown>"
+        status = project.get("status", "unknown")
+        rows.append((name, status))
+    rows.sort()
+else:
+    raise SystemExit("registry.json has unsupported 'projects' format")
+
+if not rows:
+    print("No projects found.")
+    raise SystemExit(0)
+
+for name, status in rows:
+    print(f"{name}\t{status}")
+PY
+}
+
+command="${1:-help}"
+
+case "$command" in
+  help|-h|--help)
+    usage
+    ;;
+  new)
+    new_project "${2:-}"
+    ;;
+  list)
+    list_projects
+    ;;
+  *)
+    usage
+    exit 1
+    ;;
+esac
