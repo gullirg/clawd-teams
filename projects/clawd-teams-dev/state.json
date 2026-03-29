@@ -15,7 +15,7 @@
     "clawd-teams list command"
   ],
   "model_assignments": {
-    "ceo": "anthropic/claude-sonnet-4-6",
+    "ceo": "anthropic/claude-opus-4-5",
     "cto": "codex",
     "researcher": "anthropic/claude-sonnet-4-6",
     "critic": "anthropic/claude-sonnet-4-6",

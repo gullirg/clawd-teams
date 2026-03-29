@@ -8,8 +8,9 @@
   "mode": "ACTIVE",
   "team": {
     "ceo": {
-      "model": "anthropic/claude-sonnet-4-6",
-      "daily_limit": 5
+      "model": "anthropic/claude-opus-4-5",
+      "daily_limit": 5,
+      "daily_spend_cap_usd": 0.5
     },
     "cto": {
       "agent": "codex",

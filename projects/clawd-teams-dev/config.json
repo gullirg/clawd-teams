@@ -8,9 +8,10 @@
   "team": {
     "ceo": {
       "role": "Executive / CEO",
-      "model": "anthropic/claude-sonnet-4-6",
+      "model": "anthropic/claude-opus-4-5",
       "session_target": "session:exec-clawd-teams-dev",
-      "daily_limit": 5
+      "daily_limit": 5,
+      "daily_spend_cap_usd": 0.5
     },
     "cto": {
       "role": "CTO / Dev",
