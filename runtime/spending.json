@@ -1,0 +1,37 @@
+{
+  "last_updated": "2026-03-29",
+  "currency": "USD",
+  "daily_limit_usd": 10.0,
+  "note": "Global daily limit across ALL clawd-teams projects combined",
+  "projects": {
+    "clawd-teams-dev": {
+      "today_usd": 0.05,
+      "total_usd": 0.05,
+      "budget_path": "projects/clawd-teams-dev/runtime/budget.json"
+    },
+    "rekordbox-mcp": {
+      "today_usd": 0.047,
+      "total_usd": 0.047,
+      "budget_path": "projects/rekordbox-mcp/runtime/budget.json"
+    },
+    "news-digest": {
+      "today_usd": 0.0,
+      "total_usd": 0.0,
+      "budget_path": "projects/news-digest/runtime/budget.json"
+    }
+  },
+  "external_projects": {
+    "trading-agent": {
+      "note": "Tracked by remote CEO on ahnb-greggio — bridge script for live data",
+      "today_usd": 0.18,
+      "today_gbp": 0.142,
+      "daily_limit_gbp": 5.0,
+      "source": "ops/openclaw_ceo_bridge.sh"
+    }
+  },
+  "totals": {
+    "clawd_teams_today_usd": 0.097,
+    "trading_agent_today_usd": 0.18,
+    "grand_total_today_usd": 0.277
+  }
+}

@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# spending-report — show live budget across all projects
+set -euo pipefail
+
+BASE="$(cd "$(dirname "$0")/.." && pwd)"
+TODAY=$(date +%Y-%m-%d)
+
+echo "💰 Spending Report — $TODAY"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+total=0
+
+for proj in clawd-teams-dev rekordbox-mcp news-digest; do
+  budget_file="$BASE/projects/$proj/runtime/budget.json"
+  if [ ! -f "$budget_file" ]; then
+    echo "  $proj: no budget file"
+    continue
+  fi
+  spent=$(python3 -c "
+import json
+d = json.load(open('$budget_file'))
+print(d.get('total_spend_usd', 0.0))
+")
+  limit=$(python3 -c "
+import json
+d = json.load(open('$budget_file'))
+print(d.get('daily_limit_usd', 5.0))
+")
+  echo "  🏗️  $proj: \$$spent / \$$limit/day"
+  total=$(python3 -c "print(round($total + $spent, 4))")
+done
+
+# trading-agent via bridge
+echo ""
+echo "  📈 trading-agent (remote ahnb-greggio):"
+bridge_output=$(/Users/guglielmoreggio/code/trading-agent/ops/openclaw_ceo_bridge.sh \
+  "Report only: what is today's total USD spend across all agents? One line answer only." 2>/dev/null \
+  | python3 -c "
+import sys, json
+raw = sys.stdin.read()
+try:
+    d = json.loads(raw)
+    text = d.get('result',{}).get('synthesis',{}).get('text','unknown')
+    print('    ' + text[:120])
+except:
+    print('    (bridge unavailable)')
+" 2>/dev/null || echo "    (bridge unavailable)")
+echo "$bridge_output"
+
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  clawd-teams total today: \$$total USD"
+echo ""
