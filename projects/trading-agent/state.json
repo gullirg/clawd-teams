@@ -1,0 +1,11 @@
+{
+  "project_id": "trading-agent",
+  "registered_at": "2026-03-30",
+  "cycle": 0,
+  "last_cycle": null,
+  "last_contact": null,
+  "last_known_remote_cycle": 7,
+  "last_known_balance": null,
+  "bridge_status": "untested",
+  "notes": "Registered in clawd-teams 2026-03-30. Remote executive already at cycle 7 with proven basketball strategy (49 resolved trades, Brier 0.189)."
+}

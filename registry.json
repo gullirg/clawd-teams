@@ -64,6 +64,18 @@
       "config": "projects/clawd-voice/config.json",
       "state": "projects/clawd-voice/state.json",
       "status": "active"
+    },
+    {
+      "id": "trading-agent",
+      "name": "Trading Agent",
+      "description": "Autonomous sports & political trading on Betfair Exchange. Remote Linux execution via SSH bridge.",
+      "session_key": "session:exec-trading-agent",
+      "briefing": "projects/trading-agent/EXECUTIVE.md",
+      "config": "projects/trading-agent/config.json",
+      "state": "projects/trading-agent/state.json",
+      "execution_model": "remote-bridge",
+      "bridge": "~/code/trading-agent/ops/openclaw_ceo_bridge.sh",
+      "status": "active"
     }
   ]
 }
