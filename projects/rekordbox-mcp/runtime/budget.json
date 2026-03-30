@@ -4,7 +4,7 @@
   "daily_limit_usd": 5.0,
   "calls": {
     "ceo": 2,
-    "cto": 1,
+    "cto": 5,
     "researcher": 0,
     "critic": 1,
     "planner": 1
@@ -18,17 +18,13 @@
   },
   "spend_usd": {
     "ceo": 0.045,
-    "cto": 0.0,
+    "cto": 2.96862,
     "researcher": 0.0,
     "critic": 0.001,
     "planner": 0.001
   },
-  "total_spend_usd": 0.047,
+  "total_spend_usd": 3.01562,
   "model_costs_reference": {
-    "anthropic/claude-sonnet-4-6": {
-      "input": 15.0,
-      "output": 75.0
-    },
     "anthropic/claude-sonnet-4-6": {
       "input": 3.0,
       "output": 15.0
@@ -45,5 +41,11 @@
       "input": 0.0,
       "output": 0.0
     }
-  }
+  },
+  "seen_sessions": [
+    "5f3d2a07",
+    "afa0400b",
+    "fff0518e",
+    "0396f584"
+  ]
 }

@@ -5,6 +5,14 @@ set -euo pipefail
 BASE="$(cd "$(dirname "$0")/.." && pwd)"
 TODAY=$(date +%Y-%m-%d)
 
+# Sync unaccounted sessions into budget.json before reading
+for proj in clawd-teams-dev rekordbox-mcp news-digest clawd-voice; do
+  registry="$BASE/projects/$proj/runtime/session_registry.json"
+  if [ -f "$registry" ]; then
+    python3 "$BASE/framework/sync_budget.py" "$proj" 2>/dev/null || true
+  fi
+done
+
 echo "💰 Spending Report — $TODAY"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 

@@ -1,0 +1,30 @@
+[
+  {
+    "session_id": "5f3d2a07",
+    "role": "cto",
+    "spawned_at": "2026-03-30T09:05:18.474327+00:00",
+    "accounted": true,
+    "cost_usd": 0.601001
+  },
+  {
+    "session_id": "afa0400b",
+    "role": "cto",
+    "spawned_at": "2026-03-30T09:05:18.478739+00:00",
+    "accounted": true,
+    "cost_usd": 0.827833
+  },
+  {
+    "session_id": "fff0518e",
+    "role": "cto",
+    "spawned_at": "2026-03-30T09:05:18.495431+00:00",
+    "accounted": true,
+    "cost_usd": 0.720054
+  },
+  {
+    "session_id": "0396f584",
+    "role": "cto",
+    "spawned_at": "2026-03-30T09:05:18.509421+00:00",
+    "accounted": true,
+    "cost_usd": 0.819733
+  }
+]
