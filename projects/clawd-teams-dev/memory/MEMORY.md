@@ -21,11 +21,24 @@ Repo: ~/code/clawd-teams | GitHub: gullirg/clawd-teams
 - bin/clawd-teams CLI: `new`, `list`, `help` subcommands
 - clawd-teams list shows project status, mode, last cycle
 
+## Completed
+- bin/clawd-teams CLI: `new`, `list`, `help` subcommands
+- Real USD spend tracking: framework/budget_utils.py + session_registry sidecar system
+  - session_cost() reads cost.total from JSONL (pre-computed, no token math needed)
+  - record_session.py + sync_budget.py + backfill_sessions.py
+  - bin/spending-report auto-syncs before displaying
+  - Commit: 531c43c
+
 ## Current roadmap priority
-1. Wire up real USD spend tracking in budget.json files (currently zeros)
-2. Health checks: detect stale executives, budget overruns
-3. Improve EXECUTIVE_TEMPLATE.md based on real-world learnings
+1. Health checks: detect stale executives, budget overruns, failed workers
+2. Improve EXECUTIVE_TEMPLATE.md based on real-world learnings
+3. Add CONTRIBUTING.md and CHANGELOG.md
 4. Make worker_contract.md executable (Python/shell base classes)
+
+## Lessons learned
+- JSONL cost field: message.usage.cost.total — already computed by OpenClaw
+- When CTO (Claude Code) hits API limits, CEO can implement straightforward code tasks directly
+- Planner is valuable for task decomposition even when CTO can't run
 
 ## Key rules
 - Framework improvements must not break existing projects

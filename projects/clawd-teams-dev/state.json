@@ -1,22 +1,18 @@
 {
   "cycle": 2,
   "last_cycle": "2026-03-30",
-  "last_cycle_status": "running",
+  "last_cycle_status": "completed",
   "current_goals": [
-    "Wire up real USD spend tracking in budget.json files",
     "Add automated health checks for stale executives and budget overruns",
     "Improve EXECUTIVE_TEMPLATE.md based on learnings from real projects",
     "Add CONTRIBUTING.md and CHANGELOG.md",
     "Make worker_contract.md executable — Python/shell base classes"
   ],
-  "task_queue": [
-    "task-01: budget_utils.py",
-    "task-02: session attribution sidecar",
-    "task-03: backfill + spending-report update"
-  ],
-  "active_workers": ["CTO (Claude Code) — spend tracking implementation"],
+  "task_queue": [],
+  "active_workers": [],
   "completed_tasks": [
-    "clawd-teams list command"
+    "clawd-teams list command",
+    "Real USD spend tracking via session_registry (cycle 2)"
   ],
   "model_assignments": {
     "ceo": "anthropic/claude-sonnet-4-6",
