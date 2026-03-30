@@ -21,7 +21,7 @@
       "state": "projects/clawd-teams-dev/state.json",
       "team": {
         "ceo": {
-          "model": "anthropic/claude-opus-4-5",
+          "model": "anthropic/claude-sonnet-4-6",
           "daily_limit": 5
         },
         "cto": {
