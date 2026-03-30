@@ -25,7 +25,7 @@
   },
   "total_spend_usd": 0.0,
   "model_costs_reference": {
-    "anthropic/claude-opus-4-5": {
+    "anthropic/claude-sonnet-4-6": {
       "input": 15.0,
       "output": 75.0
     },
